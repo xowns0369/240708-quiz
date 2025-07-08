@@ -58,9 +58,21 @@ if submitted:
             results.append(f"✅ {i+1}번 정답")
         else:
             results.append(f"❌ {i+1}번 오답 (정답: {correct_answer})")
+def get_percentile(score):
+    if score == 30:
+        return "상위 90% 이상"
+    elif 26 <= score <= 29:
+        return "상위 80%"
+    elif 21 <= score <= 25:
+        return "상위 70%"
+    elif 11 <= score <= 20:
+        return "상위 60%"
+    else:  # 0~10
+        return "상위 40%"
 
     st.subheader("🎉 결과")
     st.success(f"총 {score} / 30문제 정답을 맞혔습니다!")
+    st.info(f"📊 당신은 {percentile} 수준입니다!")
     with st.expander("📋 자세한 정답 확인하기"):
         for r in results:
             st.write(r)
